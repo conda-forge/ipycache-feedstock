@@ -10,21 +10,18 @@ source:
 #    fn: ipycache-{{ version }}.zip
 #    folder: .
   git_url: https://github.com/rossant/ipycache/
-#    folder: master
 
 build:
   number: 0
   noarch: python
   script: 
     - cp {{ environ['RECIPE_DIR'] }}/LICENSE.md {{ environ['SRC_DIR'] }} 
-    #- python setup.py install --single-version-externally-managed --record=record.txt
     - {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
   host:
     - python
     - pip
-    #- setuptools
 
   run:
     - python
@@ -35,8 +32,8 @@ test:
     - ipynb_runner.py
     - examples
     - test_*
+
   commands:
-    #- cd master
     - nosetests 
     - python ipynb_runner.py -v -s examples/example.ipynb  # [not win]
     - python ipynb_runner.py -v -s examples/example_outputs.ipynb  # [not win]
