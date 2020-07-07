@@ -28,6 +28,8 @@ requirements:
   run:
     - python
     - ipython
+    - cpickle  # [py3k]
+    - pickle  # [py2k]
 
 test:
   source_files:
