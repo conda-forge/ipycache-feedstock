@@ -27,12 +27,13 @@ requirements:
     - ipython
 
 test:
-  #source_files:
+  source_files:
+    - *
     #- {{ environ['SRC_DIR'] }}/ipynb_runner.py
     #- {{ environ['SRC_DIR'] }}/examples
     #- {{ environ['SRC_DIR'] }}/test_*
   commands:
-    - pwd ; ls -lR {{ environ['SRC_DIR'] }}/../
+    - pwd ; ls -lR
     - nosetests 
     - python ipynb_runner.py -v -s examples/example.ipynb  # [not win]
     - python ipynb_runner.py -v -s examples/example_outputs.ipynb  # [not win]
