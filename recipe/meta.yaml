@@ -13,12 +13,14 @@ build:
   number: 1004
   script: 
     - cp {{ environ['RECIPE_DIR'] }}/LICENSE.md {{ environ['SRC_DIR'] }} 
-    - python setup.py install --single-version-externally-managed --record=record.txt
+    #- python setup.py install --single-version-externally-managed --record=record.txt
+    - {{ PYTHON }} -m pip install . --no-deps -vv
 
 requirements:
-  build:
+  host:
     - python
-    - setuptools
+    - pip
+    #- setuptools
 
   run:
     - python
@@ -26,8 +28,9 @@ requirements:
 
 test:
   source_files:
-    - test_*
-    - examples
+    - {{ environ['SRC_DIR'] }}/ipynb_runner.py
+    - {{ environ['SRC_DIR'] }}/examples
+    - {{ environ['SRC_DIR'] }}/test_*
   commands:
     - nosetests 
     - python ipynb_runner.py -v -s examples/example.ipynb  # [not win]
