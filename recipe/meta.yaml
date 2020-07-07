@@ -5,9 +5,12 @@ package:
   version: {{ version }}
 
 source:
-  fn: ipycache-{{ version }}.zip
-  url: https://pypi.python.org/packages/source/i/ipycache/ipycache-{{ version }}.zip
-  md5: c78c6094ffab45b0e33c2f556705fa11
+  - url: https://pypi.python.org/packages/source/i/ipycache/ipycache-{{ version }}.zip
+    md5: c78c6094ffab45b0e33c2f556705fa11
+    fn: ipycache-{{ version }}.zip
+    folder: .
+  - git_url: https://github.com/rossant/ipycache/
+    folder: master
 
 build:
   number: 1004
@@ -28,10 +31,9 @@ requirements:
 
 test:
   source_files:
-    - ./*
-    #- {{ environ['SRC_DIR'] }}/ipynb_runner.py
-    #- {{ environ['SRC_DIR'] }}/examples
-    #- {{ environ['SRC_DIR'] }}/test_*
+    - master/ipynb_runner.py
+    - master/examples
+    - master/test_*
   commands:
     - pwd 
     - ls -lR
