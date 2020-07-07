@@ -1,19 +1,19 @@
-{% set version = "0.1.4" %}
+{% set version = "0.1.5" %}
 
 package:
   name: ipycache
   version: {{ version }}
 
 source:
-  - url: https://pypi.python.org/packages/source/i/ipycache/ipycache-{{ version }}.zip
-    md5: c78c6094ffab45b0e33c2f556705fa11
-    fn: ipycache-{{ version }}.zip
-    folder: .
-  - git_url: https://github.com/rossant/ipycache/
-    folder: master
+#  - url: https://pypi.python.org/packages/source/i/ipycache/ipycache-{{ version }}.zip
+#    md5: c78c6094ffab45b0e33c2f556705fa11
+#    fn: ipycache-{{ version }}.zip
+#    folder: .
+  git_url: https://github.com/rossant/ipycache/
+#    folder: master
 
 build:
-  number: 1004
+  number: 0
   script: 
     - cp {{ environ['RECIPE_DIR'] }}/LICENSE.md {{ environ['SRC_DIR'] }} 
     #- python setup.py install --single-version-externally-managed --record=record.txt
@@ -28,16 +28,14 @@ requirements:
   run:
     - python
     - ipython
-    - cpickle  # [py3k]
-    - pickle  # [py2k]
 
 test:
   source_files:
-    - master/ipynb_runner.py
-    - master/examples
-    - master/test_*
+    - ipynb_runner.py
+    - examples
+    - test_*
   commands:
-    - cd master
+    #- cd master
     - nosetests 
     - python ipynb_runner.py -v -s examples/example.ipynb  # [not win]
     - python ipynb_runner.py -v -s examples/example_outputs.ipynb  # [not win]
