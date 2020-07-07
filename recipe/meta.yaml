@@ -10,7 +10,7 @@ source:
   md5: c78c6094ffab45b0e33c2f556705fa11
 
 build:
-  number: 1003
+  number: 1004
   script: 
     - cp {{ environ['RECIPE_DIR'] }}/LICENSE.md {{ environ['SRC_DIR'] }} 
     - python setup.py install --single-version-externally-managed --record=record.txt
